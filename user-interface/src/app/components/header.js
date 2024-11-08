@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContext.js";
 import LoginButton from "./LoginButton.js";
 
 export default function Header() {
-    const { user } = useContext(AuthContext);  // Get the user from context
+    const user = useContext(AuthContext);  // Get the user from context
 
     return (
         <header className="flex justify-between bg-red-900">

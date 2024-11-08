@@ -1,15 +1,19 @@
 "use client"
+
 import React from "react";
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext.js";
+import { AuthDispatchContext } from "../context/AuthContext.js";
 
 export default function LoginButton() {
-    const { user, setUser } = useContext(AuthContext);
+    const dispatch = useContext(AuthDispatchContext);
+    
     const login = () => {
-        setUser("Patrick")
+        dispatch({
+            type: "LOGIN",
+            user: "Gary"
+        });
     }
     return (
-
         <div>
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={login}>
