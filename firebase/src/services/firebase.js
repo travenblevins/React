@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";  // Corrected `getFireStore` to `getFirestore`
+import { getFirestore } from "firebase/firestore";  
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -13,12 +13,18 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
 export const initializeFirebase = () => {
-    const app = initializeApp(firebaseConfig); // Store the app instance
-    console.log(apiKey)
-    if (typeof window !== "undefined") {
-        getAnalytics(app);  // Initialize analytics only if running in a browser environment
+    if (!firebaseConfig.apiKey) {
+        console.error("Firebase API key is missing in the config.");
+        return;
     }
-    return app; // Return the app instance if you need to access it elsewhere
+
+    const app = initializeApp(firebaseConfig); 
+    console.log('Firebase App Initialized:', app);
+
+    if (typeof window !== "undefined") {
+        getAnalytics(app);  
+    }
+
+    return app;
 };
